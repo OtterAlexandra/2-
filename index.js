@@ -21,11 +21,9 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/getList", async (req, res) => {
-  const maxi = await db.all("SELECT MAX(id) FROM sq");
-
   const sort = req.query?.sort || "asc";
   const offset = req.query?.offset || 0;
-  const limit = req.query?.limit || 1000001;
+  const limit = req.query?.limit || 10000000001;
 
   const result = await db.all(`SELECT * FROM sq order by date ${sort} limit ${offset}, ${limit}`)
   res.send(result);
